@@ -196,21 +196,21 @@ def main(args, name_list):
 def get_args():
     name_list = [('ExpNum', 'int')]
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, default='cora', help='Input graph.')  #['cora', 'citeseer', 'pubmed']['cornell', 'texas', 'wisconsin']
-    name_list.append(('input', 'str')) #actor 'chameleon', 'squirrel' computers', 'photo' 'cs', 'physics'
+    parser.add_argument('--input', type=str, default='cornell', help='Input graph.')  #['cora', 'citeseer', 'pubmed']['cornell', 'texas', 'wisconsin']
+    name_list.append(('input', 'str'))
 
-    parser.add_argument('--train_rate', type=float, default=0.2, help='Training rate.')#025,  #0.6,   # 0.025,
+    parser.add_argument('--train_rate', type=float, default=0.6, help='Training rate.')
     name_list.append(('train_rate', 'float'))
 
-    parser.add_argument('--val_rate', type=float, default=0.1, help='Validation rate.') #0.025,  #0.2,   #0.025,
+    parser.add_argument('--val_rate', type=float, default=0.2, help='Validation rate.') 
     name_list.append(('val_rate', 'float'))
 
-    parser.add_argument('--model', type=str, default='ufg',
+    parser.add_argument('--model', type=str, default='ufg_pgnn',
                         choices=['ufg','pgnn', 'ufg_pgnn', 'mlp', 'gcn', 'cheb', 'sgc', 'gat', 'jk', 'appnp', 'gprgnn'],
                         help='GNN model')
     name_list.append(('model', 'str'))
 #%%    
-    parser.add_argument('--mu', type=float, default=10, help='mu.') #0.1 0.5 1 5 10
+    parser.add_argument('--mu', type=float, default=50, help='mu.') 
     name_list.append(('mu', 'float'))
 
     parser.add_argument('--p', type=float, default=1, help='p.') 
@@ -219,16 +219,16 @@ def get_args():
     parser.add_argument('--Lev', type=int, default=1, help='level of transform (default: 2)')
     name_list.append(('Lev', 'int'))
 
-    parser.add_argument('--s', type=float, default=1,    #6
+    parser.add_argument('--s', type=float, default=1,    
                         help='dilation scale > 1 (default: 2)')
     name_list.append(('s', 'float'))
 
-    parser.add_argument('--n', type=int, default=2,     #7
+    parser.add_argument('--n', type=int, default=6,     
                         help='n - 1 = Degree of Chebyshev Polynomial Approximation (default: n = 2)')
     name_list.append(('n', 'int'))
 
     parser.add_argument('--FrameType', type=str, default='Linear',
-                        help='frame type (default: Entropy): Si1.29gmoid, Entropy')
+                        help='frame type (default: Linear): Haar')
     name_list.append(('FrameType', 'str'))
     
     parser.add_argument('--method', type=int, default=0,  help='Model 0 or 1 or 2')
@@ -237,7 +237,7 @@ def get_args():
     parser.add_argument('--runs', type=int, default=10, help='Number of repeating experiments.')
     name_list.append(('runs', 'int'))
 
-    parser.add_argument('--epochs', type=int, default=70, help='Number of epochs to train.')
+    parser.add_argument('--epochs', type=int, default=200, help='Number of epochs to train.')
     name_list.append(('epochs', 'int'))
 
     parser.add_argument('--lr', type=float, default=0.01,  help='Initial learning rate.') #0.005,   #0.01
@@ -252,7 +252,7 @@ def get_args():
     parser.add_argument('--dropout', type=float, default=0.75, help='Dropout rate (1 - keep probability).')
     name_list.append(('dropout', 'float'))
 
-    parser.add_argument('--K', type=int, default=10,  help='K.')  #2
+    parser.add_argument('--K', type=int, default=4,  help='K.')  
     name_list.append(('K', 'int'))
 
     parser.add_argument('--warmup', type=int, default=10, help='Warm-up steps: default 10') # 2
@@ -288,55 +288,11 @@ def get_args():
     #                    default=1,
     #                    help='Number of heads.')
     args = parser.parse_args()
-    #overwrite arguments
-    #args.input, args.method, args.mu, args.p, args.s, args.n = data, method, mu, p, s, n
 
     return args, name_list
 
 if __name__ == '__main__':
     main(*get_args())
 
-# For cora results:
-# Namespace(FrameType='Linear', Gamma=None, Init='PPR', K=4, Lev=1, alpha=0.0, dprate=0.75, dropout=0.75, epochs=20, input='cora', lr=0.01, method=2, model='framelet_pgnn', mu=0.5, n=3, num_heads=1, num_hid=32, p=1.5, ppnp='GPR_prop', runs=10, s=6, seed=33129394, train_rate=0.2, val_rate=0.1, weight_decay=0.0005)
-# tensor([85.1813, 84.4982, 85.3915, 85.4440, 85.2864, 85.1287, 85.0237, 84.6033, 85.2864, 85.2338])
-# Averaged test accuracy for 10 runs: 85.11 \pm 0.32
-
-# Namespace(FrameType='Linear', Gamma=None, Init='PPR', K=4, Lev=1, alpha=0.0, dprate=0.75, dropout=0.75, epochs=20, input='cora', lr=0.01, method=2, model='framelet_pgnn', mu=0.5, n=3, num_heads=1, num_hid=32, p=2.5, ppnp='GPR_prop', runs=10, s=6, seed=33129394, train_rate=0.2, val_rate=0.1, weight_decay=0.0005)
-# tensor([84.7084, 85.6542, 84.7609, 85.9170, 85.2338, 85.2864, 84.8135, 84.7084, 85.4966, 85.1287])
-# Averaged test accuracy for 10 runs: 85.17 \pm 0.43
 
 
-# Method 1  (please change the two lines in framelet_conv.py)
-# k = 3, p=1.5, epoch = 150, nhid = 32, runs = 4
-# tensor([79.3184, 78.6987, 79.5507, 79.1634])
-# Averaged test accuracy for 4 runs: 78.72 \pm 0.47
-# k =4, p = 2.5, epoch =150, nhid = 16
-# tensor([78.0015, 78.9698, 79.2409, 78.6600])
-# Averaged test accuracy for 4 runs: 78.72 \pm 0.46
-
-# Method 2  (lr = 0.005, droppout = 0.75)
-# k =4, p = 2.5, epoch =150, nhid = 32
-# tensor([79.7057, 78.0015, 79.0860, 79.5895, 78.0015])
-# Averaged test accuracy for 5 runs: 78.88 \pm 0.83
-# k =4, p = 2.5, epoch =80, nhid = 32
-# tensor([79.7057, 78.9698, 79.4345, 77.5755, 78.8149])
-# Averaged test accuracy for 5 runs: 78.90 \pm 0.82
-# k =4, p = 3.0, epoch =150, nhid = 32
-# tensor([79.2409, 78.0403, 78.6212, 79.5120, 78.3114])
-# Averaged test accuracy for 5 runs: 78.75 \pm 0.62
-# k =4, p = 3.0, epoch = 80, nhid = 32
-# tensor([79.2409, 78.7374, 78.9311, 77.4593, 79.0085])
-# Averaged test accuracy for 5 runs: 78.68 \pm 0.70
-
-# Method 3  (pre-K = 10)
-#Namespace(FrameType='Linear', Gamma=None, Init='PPR', K=5, Lev=2, alpha=0.0, dprate=0.75, dropout=0.75, epochs=70, input='cora', lr=0.005, model='framelet_pgnn', mu=0.1, n=2, num_heads=8, num_hid=32, p=2.5, ppnp='GPR_prop', runs=5, s=2, seed=129394, train_rate=0.025, val_rate=0.025, weight_decay=0.0005)
-#tensor([79.3184, 79.1634, 78.9311, 78.7761, 78.8923])
-#Averaged test accuracy for 5 runs: 79.02 \pm 0.22
-
-
-#Namespace(FrameType='Haar', Gamma=None, Init='PPR', K=4, Lev=1, alpha=0.0, dprate=0.75, dropout=0.7, epochs=150, input='wisconsin', lr=0.005, method=2, model='framelet_pgnn', mu=70.0, n=7, num_heads=8, num_hid=32, p=2.5, ppnp='GPR_prop', runs=10, s=6, seed=129394, train_rate=0.6, val_rate=0.2, weight_decay=0.0005)
-#tensor([90.7407, 90.7407, 91.6667, 95.3704, 94.4444, 94.4444, 97.2222, 93.5185,91.6667, 95.3704])
-#Averaged test accuracy for 10 runs: 93.52 \pm 2.23
-#Namespace(FrameType='Linear', Gamma=None, Init='PPR', K=5, Lev=1, alpha=0.0, dprate=0.75, dropout=0.75, epochs=70, input='wisconsin', lr=0.005, method=2, model='framelet_pgnn', mu=70.0, n=7, num_heads=1, num_hid=32, p=2.5, ppnp='GPR_prop', runs=10, s=6, seed=33129394, train_rate=0.6, val_rate=0.2, weight_decay=0.0005)
-#tensor([93.5185, 95.3704, 96.2963, 92.5926, 96.2963, 95.3704, 97.2222, 96.2963, 93.5185, 97.2222])
-#Averaged test accuracy for 10 runs: 95.37 \pm 1.63
