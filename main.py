@@ -7,6 +7,7 @@ import pandas as pd
 
 from data_proc import load_data
 from models import *
+from model_ufg import *
 import torch_geometric.transforms as T
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
