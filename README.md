@@ -10,6 +10,7 @@ More experiment results are presented as follows:
 ![image](https://user-images.githubusercontent.com/54494470/195551259-39be6510-83e9-44bf-91ef-6166371a9131.png)
 
 Noise capacity:
+
 ![image](https://user-images.githubusercontent.com/54494470/196025931-f0979ca8-40a4-4ab0-a0a8-ed65c4558bc3.png)
 
 ![image](https://user-images.githubusercontent.com/54494470/196025939-f7f9db7f-780f-44a1-a849-c811394b4a49.png)
