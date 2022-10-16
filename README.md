@@ -11,6 +11,7 @@ More experiment results are presented as follows:
 
 Noise tolerancy test:
 
-![image](https://user-images.githubusercontent.com/54494470/196025931-f0979ca8-40a4-4ab0-a0a8-ed65c4558bc3.png)
+![image](https://user-images.githubusercontent.com/54494470/196026683-14b5ab8a-a949-42b6-bfbb-65462f972782.png)
 
-![image](https://user-images.githubusercontent.com/54494470/196025939-f7f9db7f-780f-44a1-a849-c811394b4a49.png)
+
+![image](https://user-images.githubusercontent.com/54494470/196026700-c3f0de47-ca47-4097-b3cb-f03446f7c768.png)
