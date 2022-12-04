@@ -11,10 +11,9 @@ Fig.1 The above figure shows the framelet framework by giving a graph with struc
 
 ## Instruction of Adjustable p value:
 
-<img width="1350" alt="regular" src="https://user-images.githubusercontent.com/54494470/203444665-f6563ab3-7a34-43a8-aacc-d6bf26d1ba06.png">
-Fig2. The above figure shows the p-Laplacian based regularization framework and provides a double filtering with quantities of p (p = 1 and p = 2). The
-first (left) and second (middle) graphs show how the penalty term   S<sub>p</sub><sup>φ</sup> is built based on graph gradient information and the third (right) graph shows the differences in terms of the range of solution space (presented as the level set of F) due to different choices of p. It is clear to see that when the model is regularized with a lower penalty term (p = 1), one can only obtain the solution of the model from the outer-ring level set compared to its higher penalty term counterpart.
+![regularization](https://user-images.githubusercontent.com/54494470/205472541-b0f6ef48-8de8-4c5c-b2d8-26ad94d62e1f.png)
 
+Fig2. The above figure shows that the $p$-Laplacian based regularization framework interacts with the framelet when the value of $p$ is 1 and 2. The left side of the figure shows how the penalty term  S<sub>p</sub><sup>φ</sup> is built based on graph gradient information, and the right side of the figure shows the differences in terms of the range of solution space (presented as the level set of F) due to different values of p. One can clearly see that a higher penalty (i.e., p=2, presented as the bold circle in the middle) term intersects the framelet solution space at the inner circle of its level set. In contrast, a lower penalty term (i.e., p=1, presented as a shaded square at the middle ) maintains a higher variation of the framelet solution space by only touching the out circles of the framelet solution level sets. 
 
 ## More experiment results are presented as follows:
 ![image](https://user-images.githubusercontent.com/54494470/195551109-7209f63f-934d-4180-a428-afa617e06ce0.png)
