@@ -11,9 +11,11 @@ Fig.1 The above figure shows the framelet framework by giving a graph with struc
 
 ## Instruction of Adjustable p value:
 
-![regularization](https://user-images.githubusercontent.com/54494470/205472541-b0f6ef48-8de8-4c5c-b2d8-26ad94d62e1f.png)
+![regularization_new](https://user-images.githubusercontent.com/54494470/212585216-873a5702-43fa-4a0f-9075-81b897a295e5.png)
 
-Fig2. The above figure shows that the $p$-Laplacian based regularization framework interacts with the framelet when the value of $p$ is 1 and 2. The left side of the figure shows how the penalty term  S<sub>p</sub><sup>φ</sup> is built based on graph gradient information, and the right side of the figure shows the differences in terms of the range of solution space (presented as the level set of F) due to different values of p. One can clearly see that a higher penalty (i.e., p=2, presented as the bold circle in the middle) term intersects the framelet solution space at the inner circle of its level set. In contrast, a lower penalty term (i.e., p=1, presented as a shaded square at the middle ) maintains a higher variation of the framelet solution space by only touching the out circles of the framelet solution level sets. 
+Fig.2 The figure above shows the working flow of the $p$-Laplacian regularized framelet. The input graph data is first filtered and reconstructed by the framelet model; then, the result is further regularized by a sequence of graph convolution and diagonal rescaling induced by the $p$-Laplacian, which is generated based on the graph gradient information, serving as an implicit layer of the model. By adjusting the $p$ value, node features resulting from this implicit layer can be smoothed or sharpened accordingly, thus making the model adopt both homophily and heterophilic graphs. Lastly, the layer output will then be either forwarded to the task objective function or to the next framelet and $p$-Laplacian layers before the final prediction task. 
+
+
 
 ## More experiment results are presented as follows:
 ![image](https://user-images.githubusercontent.com/54494470/195551109-7209f63f-934d-4180-a428-afa617e06ce0.png)
@@ -22,8 +24,11 @@ Fig2. The above figure shows that the $p$-Laplacian based regularization framewo
 
 Noise tolerancy test:
 
-![image](https://user-images.githubusercontent.com/54494470/196026683-14b5ab8a-a949-42b6-bfbb-65462f972782.png)
+<img width="862" alt="image" src="https://user-images.githubusercontent.com/54494470/212585034-2b8b958b-0884-4359-9460-30d4f14de877.png">
+Denoising power on heterophilic graph (Chameleon)
+
+<img width="827" alt="image" src="https://user-images.githubusercontent.com/54494470/212585637-debb9f83-e61a-4e18-bb74-45d1eccd9df9.png">
+Denoising power on homophilic graph (Cora)
 
 
-![image](https://user-images.githubusercontent.com/54494470/196026700-c3f0de47-ca47-4097-b3cb-f03446f7c768.png)
 
